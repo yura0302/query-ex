@@ -12,9 +12,16 @@ function App() {
   });
 
   if (postsQuery.isLoading) return <h1>Loading...</h1>;
-  if (postsQuery.isError) return <pre>{JSON.stringify(postsQuery.error)}</pre>;
-
-  return <h1>TanStack Query</h1>;
+  if (postsQuery.isError) {
+    return <pre>{JSON.stringify(postsQuery.error)}</pre>;
+  }
+  return (
+    <div>
+      {postsQuery.data.map((post) => (
+        <div key={post.id}>{post.title}</div>
+      ))}
+    </div>
+  );
 }
 
 function wait(duration) {
